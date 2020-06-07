@@ -1,3 +1,7 @@
+@import "~bootstrap/scss/bootstrap.scss";
+@import "./LoginPage/LoginPage.scss";
+@import "./NodeCard/NodeCard.scss";
+@import "./WorkflowCard/WorkflowCard.scss";
 .App {
   text-align: center;
 }
