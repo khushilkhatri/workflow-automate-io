@@ -116,7 +116,16 @@ class NodesPage extends Component<Props, State> {
 
   stateChange = (index: number, state: string) => {
     const { data } = this.state;
-    if (index === 0 || data.nodes[index - 1]["state"] === "completed") {
+    if (state === "completed") {
+      if (
+        (data.nodes[index + 1] &&
+          data.nodes[index + 1]["state"] !== "completed") ||
+        !data.nodes[index + 1]
+      ) {
+        state = "pending";
+      }
+      data.nodes[index]["state"] = state;
+    } else if (index === 0 || data.nodes[index - 1]["state"] === "completed") {
       switch (state) {
         case "in-progress":
           state = "completed";
@@ -128,17 +137,14 @@ class NodesPage extends Component<Props, State> {
           break;
       }
       data.nodes[index]["state"] = state;
-      this.setState({
-        data
-      });
-      const workflows = getData();
-      workflows[this.props.match.params.id] = data;
-      storeData(workflows);
-    } else {
-      window.alert(
+    } else if (state === "in-progress") {
+      return window.alert(
         "Node state only can change if previous node state is completed"
       );
     }
+    this.setState({
+      data
+    });
   };
 
   render() {
