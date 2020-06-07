@@ -2,6 +2,11 @@
 @import "./LoginPage/LoginPage.scss";
 @import "./NodeCard/NodeCard.scss";
 @import "./WorkflowCard/WorkflowCard.scss";
+
+.pull-right {
+  float: right;
+}
+
 .App {
   text-align: center;
 }
