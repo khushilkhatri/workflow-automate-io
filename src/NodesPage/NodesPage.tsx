@@ -57,7 +57,9 @@ class NodesPage extends Component<Props, State> {
       isCompleted = !result;
     }
     if (!isCompleted) {
-      window.alert("Nodes are not in complete state shuffle not possible.");
+      return window.alert(
+        "Nodes are not in complete state shuffle not possible."
+      );
     }
     data.nodes = this.shuffle(data.nodes);
     this.setState({
