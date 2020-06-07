@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/workflow-automate-io/precache-manifest.f6d4c98e80d40b7b9302d42a594ffb60.js"
+  "/workflow-automate-io/precache-manifest.1060ef31ab0b7b77cbb5979ac53c73e2.js"
 );
 
 self.addEventListener('message', (event) => {
