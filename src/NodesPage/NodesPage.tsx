@@ -25,6 +25,14 @@ class NodesPage extends Component<Props, State> {
 
   saveData = () => {
     const { data } = this.state;
+    for (let i = 0; i < data.nodes.length; i++) {
+      if (data.nodes[i].title === "" || data.nodes[i].desc === "") {
+        return window.alert("Field Validation Error.");
+      }
+    }
+    if (data.title === "") {
+      return window.alert("Field Validation Error.");
+    }
     const workflows = getData();
     workflows[this.props.match.params.id] = data;
     storeData(workflows);
