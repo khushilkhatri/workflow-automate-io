@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d6454d3865220f2d49ef5b40a18b4e6e",
+    "revision": "aed69a1d0a6cf88a968f1c6a0b6f6c4a",
     "url": "/workflow-automate-io/index.html"
   },
   {
-    "revision": "e757ce2e3b1f208f88bb",
+    "revision": "4f760c9330f2f41c798b",
     "url": "/workflow-automate-io/static/css/main.76e6947d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/workflow-automate-io/static/js/2.09931ec2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e757ce2e3b1f208f88bb",
-    "url": "/workflow-automate-io/static/js/main.d0aea50e.chunk.js"
+    "revision": "4f760c9330f2f41c798b",
+    "url": "/workflow-automate-io/static/js/main.6cbbb57e.chunk.js"
   },
   {
     "revision": "83e0df95fcd7139b0fdc",
