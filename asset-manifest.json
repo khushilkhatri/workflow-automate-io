@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/workflow-automate-io/static/css/main.76e6947d.chunk.css",
-    "main.js": "/workflow-automate-io/static/js/main.6cbbb57e.chunk.js",
-    "main.js.map": "/workflow-automate-io/static/js/main.6cbbb57e.chunk.js.map",
+    "main.js": "/workflow-automate-io/static/js/main.27f49a13.chunk.js",
+    "main.js.map": "/workflow-automate-io/static/js/main.27f49a13.chunk.js.map",
     "runtime-main.js": "/workflow-automate-io/static/js/runtime-main.ace8d6d8.js",
     "runtime-main.js.map": "/workflow-automate-io/static/js/runtime-main.ace8d6d8.js.map",
     "static/js/2.09931ec2.chunk.js": "/workflow-automate-io/static/js/2.09931ec2.chunk.js",
     "static/js/2.09931ec2.chunk.js.map": "/workflow-automate-io/static/js/2.09931ec2.chunk.js.map",
     "index.html": "/workflow-automate-io/index.html",
-    "precache-manifest.a2d8bcedc25744c91560ecd553a50d3a.js": "/workflow-automate-io/precache-manifest.a2d8bcedc25744c91560ecd553a50d3a.js",
+    "precache-manifest.24e5f4deeccaed31238b6c99ebb84c9c.js": "/workflow-automate-io/precache-manifest.24e5f4deeccaed31238b6c99ebb84c9c.js",
     "service-worker.js": "/workflow-automate-io/service-worker.js",
     "static/css/main.76e6947d.chunk.css.map": "/workflow-automate-io/static/css/main.76e6947d.chunk.css.map",
     "static/js/2.09931ec2.chunk.js.LICENSE.txt": "/workflow-automate-io/static/js/2.09931ec2.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.ace8d6d8.js",
     "static/js/2.09931ec2.chunk.js",
     "static/css/main.76e6947d.chunk.css",
-    "static/js/main.6cbbb57e.chunk.js"
+    "static/js/main.27f49a13.chunk.js"
   ]
 }
