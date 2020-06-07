@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Button, Form, Card } from "react-bootstrap";
+import { Row, Col, Button, Form } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
 import Header from "../Header";
