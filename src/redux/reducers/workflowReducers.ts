@@ -4,7 +4,8 @@ import {
   SET_SEARCH,
   ON_STATE_CHANGE,
   DELETE_WORKFLOW,
-  ADD_WORKFLOW
+  ADD_WORKFLOW,
+  SAVE_DATA
 } from "../actions/types";
 import { storeData } from "../../_services/workflow.service";
 
@@ -50,6 +51,16 @@ const reducer: any = (state: any = appState, action: any) => {
       return {
         ...state,
         data: [...data]
+      };
+    }
+
+    case SAVE_DATA: {
+      let data = state.data;
+      data[Number(action.payload.index)] = action.payload.data;
+      storeData(data);
+      return {
+        ...state,
+        data: data
       };
     }
 

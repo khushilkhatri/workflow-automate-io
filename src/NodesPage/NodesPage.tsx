@@ -38,6 +38,7 @@ class NodesPage extends Component<Props, State> {
       return window.alert("Field Validation Error.");
     }
     this.props.saveData({ index: this.props.match.params.id, data });
+    console.log(data);
     window.alert("Workflow Saved");
   };
 
@@ -103,7 +104,12 @@ class NodesPage extends Component<Props, State> {
       desc: "Add your description",
       state: "pending"
     });
-    data.state = "pending";
+    if (data.state === "completed") {
+      data.state = "pending";
+      window.alert(
+        "Your current work flow state is Completed adding new node changed it to Pending"
+      );
+    }
     this.setState({
       data
     });
@@ -119,7 +125,17 @@ class NodesPage extends Component<Props, State> {
 
   stateChange = (index: number, state: string) => {
     const { data } = this.state;
+    console.log(
+      state,
+      data.state === "completed" && index === data.nodes.length - 1
+    );
     if (state === "completed") {
+      if (data.state === "completed" && index === data.nodes.length - 1) {
+        data.state = "pending";
+        window.alert(
+          "Making node pending will change workflow state to pending."
+        );
+      }
       if (
         (data.nodes[index + 1] &&
           data.nodes[index + 1]["state"] !== "completed") ||
@@ -149,13 +165,6 @@ class NodesPage extends Component<Props, State> {
       data
     });
   };
-
-  componentWillUnmount() {
-    console.log("hello");
-    this.setState({
-      state: null
-    });
-  }
 
   render() {
     const { data } = this.state;
