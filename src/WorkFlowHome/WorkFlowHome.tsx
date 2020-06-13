@@ -7,28 +7,30 @@ import {
   Button,
   Form
 } from "react-bootstrap";
+import { connect } from "react-redux";
 
+import { registrations, searchFilter, addWorkflow } from "../redux/actions";
 import Header from "../Header";
 import ToolsMenu from "../ToolsMenu";
-import { getData, storeData } from "../_services/workflow.service";
 import WorkflowModal from "../WorkflowModal";
 import WorkflowCard from "../WorkflowCard";
 
 type State = {
   showModal: boolean;
-  data: Array<any>;
-  filter: string;
-  search: string;
 };
 
-type Props = {};
+type Props = {
+  registrations: any;
+  filter: string;
+  search: string;
+  searchFilter: any;
+  data: Array<any>;
+  addWorkflow: any;
+};
 
 class WorkFlowHome extends Component<Props, State> {
   state: State = {
-    showModal: false,
-    data: getData(),
-    filter: "All",
-    search: ""
+    showModal: false
   };
 
   createWorkspace = () => {
@@ -38,16 +40,14 @@ class WorkFlowHome extends Component<Props, State> {
   };
 
   storeWorkflow = (workflowName: any) => {
-    const { data } = this.state;
     const newWorkflow = {
       id: new Date().getTime(),
       title: workflowName.workflowName,
       state: "pending",
       nodes: []
     };
-    data.push(newWorkflow);
-    this.setState({ data, showModal: false });
-    storeData(data);
+    this.props.addWorkflow(newWorkflow);
+    this.setState({ showModal: false });
   };
 
   onHide = () => {
@@ -57,38 +57,16 @@ class WorkFlowHome extends Component<Props, State> {
   };
 
   onChange = (event: any) => {
-    this.setState({
-      search: event.target.value
-    });
+    this.props.searchFilter(event.target.value);
   };
 
   changeFilter = (filter: string) => {
-    this.setState({
-      filter: filter
-    });
-  };
-
-  deleteWorkflow = (event: any, index: number) => {
-    event.preventDefault();
-    const { data } = this.state;
-    data.splice(index, 1);
-    this.setState({ data });
-    storeData(data);
-  };
-
-  onStateChange = (event: any, isCompleted: string, index: number) => {
-    const { data } = this.state;
-    event.preventDefault();
-    if (!isCompleted) {
-      return window.alert("Nodes may not completed or nodes not available.");
-    }
-    data[index].state =
-      data[index].state === "completed" ? "pending" : "completed";
-    this.setState({ data });
+    this.props.registrations(filter);
   };
 
   render() {
-    const { showModal, data, filter, search } = this.state;
+    const { search, filter, data } = this.props;
+    const { showModal } = this.state;
     return (
       <>
         <Header />
@@ -150,11 +128,9 @@ class WorkFlowHome extends Component<Props, State> {
             return (
               <WorkflowCard
                 isCompleted={isCompleted}
-                deleteWorkflow={this.deleteWorkflow}
                 key={index}
                 index={index}
-                onStateChange={this.onStateChange}
-                data={d}
+                data={{ ...d }}
               />
             );
           })}
@@ -169,4 +145,18 @@ class WorkFlowHome extends Component<Props, State> {
   }
 }
 
-export default WorkFlowHome;
+const mapStateToProps = ({ workflow }: any) => ({
+  filter: workflow.filter,
+  search: workflow.search,
+  data: workflow.data
+});
+
+const dispatchStateToProps = (dispatch: any) => {
+  return {
+    registrations: (filter: string) => dispatch(registrations(filter)),
+    searchFilter: (search: string) => dispatch(searchFilter(search)),
+    addWorkflow: (workflow: any) => dispatch(addWorkflow(workflow))
+  };
+};
+
+export default connect(mapStateToProps, dispatchStateToProps)(WorkFlowHome);

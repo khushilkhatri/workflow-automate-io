@@ -2,7 +2,6 @@
   "name": "workflow",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://khushilkhatri.github.io/workflow-automate-io",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -12,6 +11,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "^7.1.9",
     "@types/react-router": "^5.1.7",
     "@types/react-router-dom": "^5.1.5",
     "bootstrap": "^4.5.0",
@@ -22,8 +22,10 @@
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.7.2",
     "react-icons": "^3.10.0",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "redux-thunk": "^2.3.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -65,6 +67,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "2.5.0",
     "gh-pages": "^3.0.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "redux-devtools-extension": "^2.13.8"
   }
 }
