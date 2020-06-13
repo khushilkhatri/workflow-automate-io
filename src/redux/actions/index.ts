@@ -1,14 +1,15 @@
 import {
-  SET_CHECKIN_TYPE,
+  SET_FILTER,
   SET_SEARCH,
   ON_STATE_CHANGE,
   DELETE_WORKFLOW,
-  ADD_WORKFLOW
+  ADD_WORKFLOW,
+  SAVE_DATA
 } from "./types";
 
-export const registrations = (filter: string) => (dispatch: any) => {
+export const addFilter = (filter: string) => (dispatch: any) => {
   dispatch({
-    type: SET_CHECKIN_TYPE,
+    type: SET_FILTER,
     payload: filter
   });
 };
@@ -37,6 +38,13 @@ export const deleteWorkflow = (index: any) => (dispatch: any) => {
 export const addWorkflow = (data: any) => (dispatch: any) => {
   dispatch({
     type: ADD_WORKFLOW,
+    payload: data
+  });
+};
+
+export const saveData = (data: any) => (dispatch: any) => {
+  dispatch({
+    type: SAVE_DATA,
     payload: data
   });
 };

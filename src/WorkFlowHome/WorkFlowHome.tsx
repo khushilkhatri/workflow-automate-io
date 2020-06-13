@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import { connect } from "react-redux";
 
-import { registrations, searchFilter, addWorkflow } from "../redux/actions";
+import { addFilter, searchFilter, addWorkflow } from "../redux/actions";
 import Header from "../Header";
 import ToolsMenu from "../ToolsMenu";
 import WorkflowModal from "../WorkflowModal";
@@ -20,7 +20,7 @@ type State = {
 };
 
 type Props = {
-  registrations: any;
+  addFilter: any;
   filter: string;
   search: string;
   searchFilter: any;
@@ -61,7 +61,7 @@ class WorkFlowHome extends Component<Props, State> {
   };
 
   changeFilter = (filter: string) => {
-    this.props.registrations(filter);
+    this.props.addFilter(filter);
   };
 
   render() {
@@ -153,7 +153,7 @@ const mapStateToProps = ({ workflow }: any) => ({
 
 const dispatchStateToProps = (dispatch: any) => {
   return {
-    registrations: (filter: string) => dispatch(registrations(filter)),
+    addFilter: (filter: string) => dispatch(addFilter(filter)),
     searchFilter: (search: string) => dispatch(searchFilter(search)),
     addWorkflow: (workflow: any) => dispatch(addWorkflow(workflow))
   };

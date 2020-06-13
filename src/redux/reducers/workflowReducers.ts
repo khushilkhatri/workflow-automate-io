@@ -1,6 +1,6 @@
 import appState from "../constant";
 import {
-  SET_CHECKIN_TYPE,
+  SET_FILTER,
   SET_SEARCH,
   ON_STATE_CHANGE,
   DELETE_WORKFLOW,
@@ -10,7 +10,7 @@ import { storeData } from "../../_services/workflow.service";
 
 const reducer: any = (state: any = appState, action: any) => {
   switch (action.type) {
-    case SET_CHECKIN_TYPE:
+    case SET_FILTER:
       return {
         ...state,
         filter: action.payload

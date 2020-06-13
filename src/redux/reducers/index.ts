@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import reducers from "./reducers";
+import workflowReducers from "./workflowReducers";
+import nodesReducer from "./nodesReducers";
 
 const rootReducer = combineReducers({
-  workflow: reducers
+  workflow: workflowReducers,
+  nodes: nodesReducer
 });
 
 export default rootReducer;

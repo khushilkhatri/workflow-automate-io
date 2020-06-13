@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Header from "../Header";
 import ToolsMenu from "../ToolsMenu";
-import { getData, storeData } from "../_services/workflow.service";
 import NodeCard from "../NodeCard";
 import Page404 from "../Page404";
+import { saveData } from "../redux/actions";
+import { getData } from "../_services/workflow.service";
 
 type State = {
   search: string;
@@ -15,6 +17,8 @@ type State = {
 
 type Props = {
   match: any;
+  data: any;
+  saveData: any;
 };
 
 class NodesPage extends Component<Props, State> {
@@ -33,9 +37,7 @@ class NodesPage extends Component<Props, State> {
     if (data.title === "") {
       return window.alert("Field Validation Error.");
     }
-    const workflows = getData();
-    workflows[this.props.match.params.id] = data;
-    storeData(workflows);
+    this.props.saveData({ index: this.props.match.params.id, data });
     window.alert("Workflow Saved");
   };
 
@@ -101,6 +103,7 @@ class NodesPage extends Component<Props, State> {
       desc: "Add your description",
       state: "pending"
     });
+    data.state = "pending";
     this.setState({
       data
     });
@@ -146,6 +149,13 @@ class NodesPage extends Component<Props, State> {
       data
     });
   };
+
+  componentWillUnmount() {
+    console.log("hello");
+    this.setState({
+      state: null
+    });
+  }
 
   render() {
     const { data } = this.state;
@@ -208,7 +218,7 @@ class NodesPage extends Component<Props, State> {
             {data.nodes.map((d: any, index: number) => (
               <NodeCard
                 key={index}
-                data={d}
+                data={{ ...d }}
                 stateChange={this.stateChange}
                 index={index}
                 onChange={this.onNodeChange}
@@ -221,4 +231,10 @@ class NodesPage extends Component<Props, State> {
   }
 }
 
-export default withRouter(NodesPage);
+const dispatchStateToProps = (dispatch: any) => {
+  return {
+    saveData: (filter: string) => dispatch(saveData(filter))
+  };
+};
+
+export default connect(null, dispatchStateToProps)(withRouter(NodesPage));
