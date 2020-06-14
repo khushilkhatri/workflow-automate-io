@@ -1,7 +1,8 @@
-import { getData } from "../_services/workflow.service";
+import { getData, getUser } from "../_services/workflow.service";
 
 export default {
   filter: "All",
   search: "",
-  data: getData()
+  data: getData(),
+  user: getUser()
 };

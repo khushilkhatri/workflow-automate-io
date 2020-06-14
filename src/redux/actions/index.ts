@@ -4,7 +4,8 @@ import {
   ON_STATE_CHANGE,
   DELETE_WORKFLOW,
   ADD_WORKFLOW,
-  SAVE_DATA
+  SAVE_DATA,
+  SET_USER
 } from "./types";
 
 export const addFilter = (filter: string) => (dispatch: any) => {
@@ -46,5 +47,12 @@ export const saveData = (data: any) => (dispatch: any) => {
   dispatch({
     type: SAVE_DATA,
     payload: data
+  });
+};
+
+export const setUser = (user: any) => (dispatch: any) => {
+  dispatch({
+    type: SET_USER,
+    payload: user
   });
 };

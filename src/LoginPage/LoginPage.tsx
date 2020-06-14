@@ -12,11 +12,14 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { FaEnvelope, FaKey } from "react-icons/fa";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
+import { setUser } from "../redux/actions";
 import { storeUser } from "../_services/workflow.service";
 
 type Props = {
   history: any;
+  setUser: any;
 };
 
 const LoginPage = (props: Props) => {
@@ -28,6 +31,7 @@ const LoginPage = (props: Props) => {
       data.password === "1234567890"
     ) {
       storeUser(data);
+      props.setUser(data);
       changeErrorState(false);
       props.history.push("/");
     } else {
@@ -142,4 +146,10 @@ const LoginPage = (props: Props) => {
   );
 };
 
-export default withRouter(LoginPage);
+const dispatchStateToProps = (dispatch: any) => {
+  return {
+    setUser: (user: string) => dispatch(setUser(user))
+  };
+};
+
+export default connect(null, dispatchStateToProps)(withRouter(LoginPage));

@@ -5,3 +5,4 @@ export const ON_STATE_CHANGE = "ON_STATE_CHANGE";
 export const DELETE_WORKFLOW = "DELETE_WORKFLOW";
 export const ADD_WORKFLOW = "ADD_WORKFLOW";
 export const SAVE_DATA = "SAVE_DATA";
+export const SET_USER = "SET_USER";

@@ -38,7 +38,6 @@ class NodesPage extends Component<Props, State> {
       return window.alert("Field Validation Error.");
     }
     this.props.saveData({ index: this.props.match.params.id, data });
-    console.log(data);
     window.alert("Workflow Saved");
   };
 
@@ -125,10 +124,6 @@ class NodesPage extends Component<Props, State> {
 
   stateChange = (index: number, state: string) => {
     const { data } = this.state;
-    console.log(
-      state,
-      data.state === "completed" && index === data.nodes.length - 1
-    );
     if (state === "completed") {
       if (data.state === "completed" && index === data.nodes.length - 1) {
         data.state = "pending";

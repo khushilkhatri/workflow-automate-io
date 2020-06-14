@@ -1,27 +1,31 @@
 import React from "react";
 import { Route, Redirect, Router, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import { connect } from "react-redux";
 
 import "./App.scss";
-import { getUser } from "./_services/workflow.service";
 import LoginPage from "./LoginPage";
 import WorkflowHome from "./WorkFlowHome";
 import NodesPage from "./NodesPage";
 
 const history = createBrowserHistory();
 
-function App() {
+type Props = {
+  user: any;
+};
+
+function App(props: Props) {
   return (
     <React.StrictMode>
       <Router history={history}>
         <Switch>
-          <PublicRoute path={"/login"} exact={true}>
+          <PublicRoute path={"/login"} exact={true} user={props.user}>
             <LoginPage />
           </PublicRoute>
-          <PrivateRoute path={"/"} exact={true}>
+          <PrivateRoute path={"/"} exact={true} user={props.user}>
             <WorkflowHome />
           </PrivateRoute>
-          <PrivateRoute path={"/nodes/:id"} exact={true}>
+          <PrivateRoute path={"/nodes/:id"} exact={true} user={props.user}>
             <NodesPage />
           </PrivateRoute>
           <Redirect from={"*"} to="/login"></Redirect>
@@ -32,12 +36,12 @@ function App() {
   );
 }
 
-function PublicRoute({ children, ...rest }: any) {
+function PublicRoute({ children, user, ...rest }: any) {
   return (
     <Route
       {...rest}
       render={() =>
-        getUser() ? (
+        user ? (
           <Redirect
             to={{
               pathname: "/"
@@ -51,12 +55,12 @@ function PublicRoute({ children, ...rest }: any) {
   );
 }
 
-function PrivateRoute({ children, ...rest }: any) {
+function PrivateRoute({ children, user, ...rest }: any) {
   return (
     <Route
       {...rest}
       render={() =>
-        getUser() ? (
+        user ? (
           children
         ) : (
           <Redirect
@@ -70,4 +74,16 @@ function PrivateRoute({ children, ...rest }: any) {
   );
 }
 
-export default App;
+const mapStateToProps = ({ user }: any) => {
+  return {
+    user
+  };
+};
+
+// const dispatchStateToProps = (dispatch: any) => {
+//   return {
+//     addFilter: (filter: string) => dispatch(addFilter(filter)),
+//   };
+// };
+
+export default connect(mapStateToProps)(App);
